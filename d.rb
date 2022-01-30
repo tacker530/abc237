@@ -2,15 +2,21 @@
 N = gets.chomp.to_i
 S = gets.chomp.chars
 
-result = [0]
-pos = 0
-S.each_with_index do |c,i|
-  if c == "L" then
-    result.insert(pos,i+1)
-  elsif c == "R" then
-    pos = pos + 1
-    result.insert(pos,i+1)  
+
+
+def ins(ary, i)
+  if i > N then
+    ary
+  else
+    if S[i] == "L" then
+      ins(ary, i+1).push  i
+    else
+      ins(ary, i+1).unshift i
+    end
   end
 end
 
-puts result.join(" ")
+
+result = []
+puts ins(result,0).join(" ")
+
